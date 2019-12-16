@@ -6,6 +6,7 @@
             <form action="{{ url_for('ownersapi', phonenumber = owner.phonenumber) }}" method="post">
                 <label for="name">Name</label><br>
                 <input type="text" name="name" id="name" required="required" value="{{ owner.name }}"><br>
+                <label for="age">Age</label><br>
                 <select id="age" name="age" required="required">
                 {% for opt in range(13,81) %}
                     <option value="{{ opt }}" {% if owner.age == opt %} selected="selected"{% endif %}>{{ opt }}</option>
@@ -28,4 +29,17 @@
             </form>
         </label>
     {% endif %}
+    <label> Add Vet To Owner</label>
+    <form action="{{ url_for('vetsownerslist')}}" method="post">
+    {% if vet_list %}
+        <label for="vet_id"> Vets</label>
+        <select id="vet_id" name="vet_id">
+        {% for vet in vet_list %}
+            <option value="{{ vet.id }}">{{ vet.name }}</option>
+        {% endfor %}
+        </select><br>
+    {% endif %}
+        <input type="hidden" id="owner_phone" name="owner_phone" value="{{ owner.phonenumber }}" >
+        <input type="submit" value="Add">
+    </form>
 {% endblock %}
