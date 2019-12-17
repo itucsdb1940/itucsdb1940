@@ -1,6 +1,3 @@
-Parts Implemented By Omer Faruk Davarci
-=======================================
-
 Vet
 ---
 
