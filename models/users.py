@@ -55,6 +55,7 @@ class Users(UserMixin):
             )
             self.password = hasher.hash(self.password)
             self.active = True
+            self.admin = True
             c = db_client.create(exp, (self.username, self.password, self.is_admin, self.active))
             if c:
                 return {}, 404
