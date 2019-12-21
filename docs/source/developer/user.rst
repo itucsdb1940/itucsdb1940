@@ -16,6 +16,8 @@ User
             'password character varying COLLATE pg_catalog."default" NOT NULL',
             'is_admin boolean',
             'active boolean',
+            'zone character varying(2) COLLATE pg_catalog."default"',
+            'created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,',
             'CONSTRAINT users_pkey PRIMARY KEY (id, username)'
         ]
 
@@ -56,12 +58,15 @@ User
                         '{}'.format('password'),
                         '{}'.format('is_admin'),
                         '{}'.format('active'),
+                        '{}'.format('zone'),
+                        '{}'.format('created_at')
                     ]),
-                    values=','.join(['%s', '%s', '%s', '%s'])
+                    values=','.join(['%s', '%s', '%s', '%s', '%s', '%s'])
                 )
                 self.password = hasher.hash(self.password)
                 self.active = True
-                c = db_client.create(exp, (self.username, self.password, self.is_admin, self.active))
+                local_zone = "TR" 
+                c = db_client.create(exp, (self.username, self.password, self.is_admin, self.active, local_zone))
                 if c:
                     return {}, 404
 
