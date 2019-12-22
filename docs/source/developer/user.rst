@@ -58,10 +58,9 @@ User
                         '{}'.format('password'),
                         '{}'.format('is_admin'),
                         '{}'.format('active'),
-                        '{}'.format('zone'),
-                        '{}'.format('created_at')
+                        '{}'.format('zone')
                     ]),
-                    values=','.join(['%s', '%s', '%s', '%s', '%s', '%s'])
+                    values=','.join(['%s', '%s', '%s', '%s', '%s'])
                 )
                 self.password = hasher.hash(self.password)
                 self.active = True
